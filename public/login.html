@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <h1>Your Music</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="ajuste">
+        <main class="container">
+            <h2>Login</h2>
+            <form action="/users/login" method="POST">
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+            <p style="padding-top: 20px;">Não tem uma conta? </p>
+            <a href="/cadastro">Cadastre-se</a>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2023 Meu Site</p>
+    </footer>
+</body>
+</html>

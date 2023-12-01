@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+    <title>Grafico 1</title>
+  </head>
+<body>
+  <header>
+    <h1>Your Music</h1>
+    <nav>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Cadastro</a></li>
+          <li><a href="/topTracks">Top Tracks</a></li>
+          <li><a href="/recommendedTracks">Recommended Tracks</a></li>
+        </ul>
+    </nav>  
+  </header>
+  <div class="ajuste">
+    <main class="container" style="width: 20cm;">
+      <div style="text-align: left;">
+        <div id="topTracks"></div>
+      </div>
+    </main>
+  </div>
+  <footer style="margin-top: 2cm;">
+    <p>&copy; 2023 Meu Site</p>
+  </footer>
+  
+
+<script>
+
+  const token = 'BQAlrFrKSNqSksIjxgQq3OWkbdP2veNWsiXqLlWQqAvCzUgZeypSctt4HW5bZ7tUGIMDKIsBVmsPDjuJijsVrVMwWkgyII4r2SKPp6VmJqMuFLcW6zyHchNtczNmAds8MzB1mSPpPgFX08meNxtt5FAUc4kevAQZISYJn5ck6khtGWOcP5hZihY6tDlQAm8P-yKV1M9cD810rss2SobIJ82hzksR2l6G-0VtWEFwIXcmLPL16UQnluWKgb6wUCa1ktlf-gNOmMkjQ_cJ2X2wvkXe'
+
+  async function fetchWebApi(endpoint, method, body) {
+    const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method,
+      body: JSON.stringify(body)
+    });
+    return await res.json();
+  }
+
+  async function getTopTracks() {
+    return (await fetchWebApi(
+      'v1/me/top/tracks?time_range=long_term&limit=5', 'GET'
+    )).items;
+  }
+
+  async function displayTopTracks() {
+    const topTracks = await getTopTracks();
+    const topTracksContainer = document.getElementById('topTracks');
+    topTracksContainer.innerHTML = topTracks.map(
+  ({ name, artists, album }, index) =>
+    `<img src="${album.images[0].url}" alt="${name}" style="height:1.5cm; display: inline-block"> <div class="track">${index + 1}. ${name} <br><span style="color:purple"> ${artists.map(artist => artist.name).join(', ')}</div><br>`
+  ).join('');
+  }
+
+  displayTopTracks();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+    <title>Grafico 1</title>
+  </head>
+<body>
+  <header>
+    <h1>Your Music</h1>
+    <nav>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Cadastro</a></li>
+          <li><a href="/topTracks">Top Tracks</a></li>
+          <li><a href="/recommendedTracks">Recommended Tracks</a></li>
+        </ul>
+    </nav>  
+  </header>
+
+    
+  <div class="ajuste">
+    <main class="container" style="width: 20cm;">
+      <div style="text-align: left;">
+        <div id="recommendedTracks"></div>
+      </div>
+    </main>
+  </div>
+
+  <footer style="margin-top: 1.6cm;">
+    <p>&copy; 2023 Meu Site</p>
+  </footer>
+  
+<script>
+
+  const token = 'BQAlrFrKSNqSksIjxgQq3OWkbdP2veNWsiXqLlWQqAvCzUgZeypSctt4HW5bZ7tUGIMDKIsBVmsPDjuJijsVrVMwWkgyII4r2SKPp6VmJqMuFLcW6zyHchNtczNmAds8MzB1mSPpPgFX08meNxtt5FAUc4kevAQZISYJn5ck6khtGWOcP5hZihY6tDlQAm8P-yKV1M9cD810rss2SobIJ82hzksR2l6G-0VtWEFwIXcmLPL16UQnluWKgb6wUCa1ktlf-gNOmMkjQ_cJ2X2wvkXe'
+
+
+  async function fetchWebApi(endpoint, method, body) {
+    const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method,
+      body: JSON.stringify(body)
+    });
+    return await res.json();
+  }
+
+  const topTracksIds = [
+    '6Ec5LeRzkisa5KJtwLfOoW','4AE7Lj39VnSZNOmGH2iZaq','0HLQFjnwq0FHpNVxormx60','0ARK753YaiJbpLUk7z5yIM','0xmjwnQ3FNE6HuWCt2nHdZ'
+  ];
+
+  async function getRecommendations() {
+    return (await fetchWebApi(
+      `v1/recommendations?limit=5&seed_tracks=${topTracksIds.join(',')}`, 'GET'
+    )).tracks;
+  }
+
+  async function displayRecommendedTracks() {
+    const recommendedTracks = await getRecommendations();
+    const recommendedTracksContainer = document.getElementById('recommendedTracks');
+    recommendedTracksContainer.innerHTML = recommendedTracks.map(
+  ({ name, artists, album }, index) =>
+      `<img src="${album.images[0].url}" alt="${name}" style="height:1.5cm; display: inline-block"> <div class="track">${index + 1}. ${name} <br><span style="color:purple"> ${artists.map(artist => artist.name).join(', ')}</div><br>`
+  ).join('');
+  }
+
+  displayRecommendedTracks();
+</script>
+
+</body>
+</html>

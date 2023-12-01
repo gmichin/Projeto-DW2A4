@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+    <title>Cadastro</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Music</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="ajuste">
+        <div class="container">
+            <h2>Cadastro</h2>
+            <form>
+                <div id="userFields">
+                    <label for="userName">Nome:</label>
+                    <input type="text" id="userName" name="userName" required><br>
+                    
+                    <label for="userEmail">Email:</label>
+                    <input type="email" id="userEmail" name="userEmail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"><br>
+                    
+                    <label for="userSenha">Senha:</label>
+                    <input type="password" id="userSenha" name="userSenha" required><br>
+    
+                    <label for="userConfirmSenha">Confirme a Senha:</label>
+                    <input type="password" id="userConfirmSenha" name="userConfirmSenha" required onkeyup="verificarSenhas()"><br>
+
+                </div>
+                <input type="submit" class="signup" value="Cadastrar">
+            </form>
+            <p style="padding-top: 20px;">Já tem uma conta?</p>
+            <a href="/login">Faça login</a>
+        </div>
+    
+    </main>
+    <footer>
+        <p>&copy; 2023 Meu Site</p>
+    </footer>
+    <script>
+        function verificarSenhas() {
+            const senha = document.getElementById("userSenha").value;
+            const confirmSenha = document.getElementById("userConfirmSenha").value;
+
+            if (senha !== confirmSenha) {
+                alert("A senha e a confirmação de senha não correspondem.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            const cadastroForm = document.querySelector("form");
+
+            cadastroForm.addEventListener("submit", async function (e) {
+                e.preventDefault();
+                const userName = document.getElementById("userName").value;
+                const userEmail = document.getElementById("userEmail").value;
+                const userSenha = document.getElementById("userSenha").value;
+
+                const userData = {
+                    nome: userName,
+                    email: userEmail,
+                    senha: userSenha,
+                };
+
+                try {
+                    const response = await fetch("http://localhost:3000/users/signup", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(userData),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Erro ao cadastrar usuário");
+                    }
+
+                    alert("Cadastro de usuário bem-sucedido!");
+                    window.location.href = "index.html"; 
+                } catch (error) {
+                    console.error("Erro:", error.message);
+                }
+            });
+        });
+    </script>    
+</body>
+</html>
