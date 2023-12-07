@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "rewrites": [
+      { "source": "/login", "destination": "/login.html" },
+      { "source": "/signup", "destination": "/signup.html" },
+      { "source": "/profile", "destination": "/profile.html" },
+      { "source": "/recommendedTracks", "destination": "/recommendedTracks.html" },
+      { "source": "/topTracks", "destination": "/topTracks.html" },
+      { "source": "/", "destination": "/index.html" }
+
+    ],
+    "cleanUrls": true,
+    "trailingSlash": true
+  }
+  
+  

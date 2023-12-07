@@ -4,20 +4,20 @@ const fetch = require('node-fetch');
 const db = require('../db');
 
 
-
 //vizualizar de todos perfis de usuário
 router.get('/data', (req, res) => {
+  console.log('Rota /users/data acessada');
   const query = 'SELECT * FROM users';
 
   db.query(query, (err, result) => {
     if (err) {
+      console.error('Erro ao obter dados do banco de dados:', err);
       res.status(500).json({ error: 'Erro ao obter dados do banco de dados.' });
     } else {
       res.json(result);
     }
   });
 });
-
 
 
 //login de usuários
