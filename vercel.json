@@ -7,11 +7,9 @@
       { "source": "/recommendedTracks", "destination": "/recommendedTracks.html" },
       { "source": "/topTracks", "destination": "/topTracks.html" },
       { "source": "/", "destination": "/index.html" },
-      { "source": "/css/style.css", "destination": "/style.css" }
-
-    ],
-    "cleanUrls": true,
-    "trailingSlash": true
+      { "source": "/css/style.css", "destination": "/style.css" },
+      { "source": "/users/data", "destination": "/routes/users.js" }
+    ]
   }
   
   
