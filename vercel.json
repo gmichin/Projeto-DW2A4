@@ -8,12 +8,12 @@
     ],
     "routes": [
       { "handle": "filesystem" },
-      { "src": "/.*", "dest": "/users.js" },
-      { "src": "/login", "dest": "/users.js" },
-      { "src": "/profile", "dest": "/users.js" },
-      { "src": "/signup", "dest": "/users.js" },
-      { "src": "/topTracks", "dest": "/users.js" },
-      { "src": "/recommendedTracks", "dest": "/users.js" }
+      { "src": "/.*", "dest": "/index.js" },
+      { "src": "/login", "dest": "/index.js" },
+      { "src": "/profile", "dest": "/index.js" },
+      { "src": "/signup", "dest": "/index.js" },
+      { "src": "/topTracks", "dest": "/index.js" },
+      { "src": "/recommendedTracks", "dest": "/index.js" }
     ]
   }
   
