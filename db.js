@@ -5,6 +5,7 @@ const db = mysql.createConnection({
   user: 'gustavo',
   password: 'juliemei2014',
   database: 'your_music',
+  connectionLimit: 10, 
 });
 
 
