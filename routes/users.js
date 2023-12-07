@@ -6,7 +6,6 @@ const db = require('../db');
 
 //vizualizar de todos perfis de usuário
 router.get('/data', (req, res) => {
-  console.log('Rota /users/data acessada');
   const query = 'SELECT * FROM users';
 
   db.query(query, (err, result) => {
@@ -101,5 +100,6 @@ router.post('/signup', async (req, res) => {
 
 
 
-module.exports = router;
-
+module.exports = (req, res) => {
+  router(req, res);
+};

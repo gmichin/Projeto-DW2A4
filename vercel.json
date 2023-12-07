@@ -9,11 +9,5 @@
     { "source": "/", "destination": "/index.html" },
     { "source": "/css/style.css", "destination": "/style.css" },
     { "source": "/users/:path*", "destination": "/routes/users.js" }
-  ],
-  "builds": [
-    {
-      "src": "/routes/**",
-      "use": "@now/node-server"
-    }
   ]
 }

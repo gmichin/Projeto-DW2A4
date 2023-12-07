@@ -12,7 +12,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', require('./routes/users')); 
 
 app.get('/', (req, res) => {
-  console.log('Acessando a rota /');
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
