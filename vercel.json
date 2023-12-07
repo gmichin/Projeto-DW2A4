@@ -8,12 +8,7 @@
     ],
     "routes": [
       { "handle": "filesystem" },
-      { "src": "/.*", "dest": "/index.js" },
-      { "src": "/login", "dest": "/index.js" },
-      { "src": "/profile", "dest": "/index.js" },
-      { "src": "/signup", "dest": "/index.js" },
-      { "src": "/topTracks", "dest": "/index.js" },
-      { "src": "/recommendedTracks", "dest": "/index.js" }
+      { "src": "/.*", "dest": "/index.js" }
     ]
   }
   
